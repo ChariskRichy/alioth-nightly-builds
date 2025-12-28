@@ -2,8 +2,6 @@ name: Build images
 on:
   push:
   workflow_dispatch:
-  schedule:
-    - cron: '0 0 * * 5' # Run every friday at midnight
 
 env:
   KERNEL_BRANCH: 6.12.1
@@ -67,5 +65,8 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: xiaomi-alioth
-          path: out/*-alioth.img*
+          path: |
+            out/*-alioth.img*
+            linux/.output/arch/arm64/boot/Image*
+            linux/.output/arch/arm64/boot/vmlinu*
           retention-days: 7
